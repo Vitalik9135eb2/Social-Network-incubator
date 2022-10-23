@@ -1,0 +1,33 @@
+
+.navBar {
+  background-color: #bbf1fc;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 40px 0;
+  gap: 10px;
+
+  &__item {
+  }
+
+  &__link {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    padding: 8px 20px;
+    transition: .5s;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid #94d9f1;
+      background-color: #94d9f1;
+
+    }
+
+    &.active {
+      border: 1px solid #94d9f1;
+      background-color: #94d9f1;
+    }
+  }
+}
+
