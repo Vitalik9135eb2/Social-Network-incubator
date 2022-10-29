@@ -14,7 +14,7 @@
     width: 100%;
   }
 
-  &__message{
+  &__message_content{
     width: 100%;
     max-height: 700px;
     min-height: 300px;
@@ -25,10 +25,40 @@
     align-items: flex-start;
     padding: 10px;
 
+  }
+
+  &__message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 32px;
     &_my{
+      display: flex;
+      align-items: center;
+      justify-content: center;
       align-self: flex-end;
+      gap: 32px;
+    }
+
+    &_text{
+      background-color: #bbf1fc;
+    }
+
+    &_users{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &_avatar{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
   }
+
+
 
 
 

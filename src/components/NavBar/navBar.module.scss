@@ -1,32 +1,62 @@
 
 .navBar {
-  background-color: #bbf1fc;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 300px;
   padding: 40px 0;
-  gap: 10px;
+  border-right: 1px solid #A6A3A0;
 
+  &__icon{
+    width: 24px;
+    height: 24px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(66deg) brightness(102%) contrast(103%);
+  }
   &__item {
+    display: flex;
+    gap: 32px;
+    &:first-child{
+      padding: 0 0 20px 16px;
+      &:hover{
+        background-color: transparent;
+        border: none;
+      }
+    }
+
+  }
+  &__logo_link{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  &__logo{
+    width: 60px;
+    height: 60px;
   }
 
   &__link {
-    color: black;
     text-decoration: none;
     display: flex;
-    padding: 8px 20px;
-    transition: .5s;
+    align-items: center;
     border: 1px solid transparent;
+    color: #ffffff;
+    transition: .5s;
+    width: 100%;
+    padding: 16px 20px;
+    font-weight: 600;
+    gap: 16px;
 
     &:hover {
-      border: 1px solid #94d9f1;
-      background-color: #94d9f1;
-
+      background-color: rgb(59, 181, 255);
+      border: 1px solid #949393;
+      color: #ffffff;
     }
 
     &.active {
-      border: 1px solid #94d9f1;
-      background-color: #94d9f1;
+      background-color: rgb(131, 207, 253);
     }
   }
 }

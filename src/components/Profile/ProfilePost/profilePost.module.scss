@@ -1,0 +1,82 @@
+
+.posts{
+  margin: 40px 0 100px;
+  display: flex;
+  padding: 8px 32px;
+  flex-direction: column;
+  gap: 32px;
+  border-bottom: 1px dashed #c4c4c4;
+
+  &__header{
+    display: flex;
+    gap: 16px;
+  }
+
+  &__info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name{
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  &__email{
+    font-size: 14px;
+    color: #c4c4c4;
+  }
+  &__avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  &__message_wrap{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__message_text{
+    font-size: 14px;
+    color: #ffffff;
+  }
+
+  &__likes_wrap{
+    align-self: flex-end;
+    display: flex;
+    gap: 16px;
+  }
+  &__like{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  &__likes_btn{
+    background-color: transparent;
+    border: none!important;
+    cursor: pointer;
+    outline: none !important;
+    box-shadow: none !important;
+
+    &:hover > .posts__likes_img{
+      filter: invert(78%) sepia(75%) saturate(3616%) hue-rotate(141deg) brightness(98%) contrast(97%);
+    }
+  }
+
+  &__likes_counter{
+    font-size: 16px;
+    font-weight: 600;
+    color: #067dc5;
+  }
+
+  &__likes_img{
+    width: 20px;
+    height: 20px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(89deg) brightness(103%) contrast(104%);
+  }
+  &__disLikes_img{
+    transform: rotate(180deg);
+  }
+}

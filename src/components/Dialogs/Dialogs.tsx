@@ -14,13 +14,12 @@ export const Dialogs = () => {
             </ul>
 
             <div className={s.dialogs__message_wrap}>
-                <div className={s.dialogs__message}>
+                <div className={s.dialogs__message_content}>
 
-                    <DialogItem message={"HI"}/>
+                    <DialogItem message={"HI"} name={"me"}/>
 
-                    <div className={s.dialogs__message__you}>
-                        Hellow
-                    </div>
+                    <DialogItem message={"Hellow"} name={"Anna"}/>
+
                 </div>
 
                 <div className={s.dialogs__input_wrap}>

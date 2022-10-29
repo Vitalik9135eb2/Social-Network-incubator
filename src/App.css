@@ -6,5 +6,6 @@
 .main{
   display: flex;
   position: relative;
-  min-height: 100vh
+  min-height: 100vh;
+  background-color: #15202B;
 }
