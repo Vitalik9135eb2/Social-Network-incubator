@@ -12,8 +12,31 @@ export const Profile: React.FC <postsArrayType>  = (props) => {
 
     const profileBg = "https://na-dache.pro/uploads/posts/2021-05/1621545702_37-p-peizazhi-prirodi-45.jpg"
     const avatarDefoult = "https://drasler.ru/wp-content/uploads/2019/05/%D0%A4%D0%BE%D1%82%D0%BE-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8F-%D0%B4%D0%BB%D1%8F-%D0%B2%D0%B0%D1%82%D1%81%D0%B0%D0%BF-%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE-009.jpg"
+    const friendsAvatar = "https://sunmag.me/wp-content/uploads/2019/11/sunmag-003-small-avatar.png"
+    const profileGalleryImg ="https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg"
 
+    const profileFriendsData = [
+        {id:1, name:"Son", email: "@son.com", country: "India",  follow: false},
+        {id:2, name:"Anna", email: "anna@mail.ru", country: "France", follow: false},
+        {id:3, name:"Peter", email: "Peter1213@tut.by", country: "Italia", follow: false},
+    ]
 
+    const profileFriends = profileFriendsData.map(el => {
+
+        return <li key={Math.random()} className={s.profile__friends_item}>
+                <div className={s.profile__friends_info}>
+
+                    <img className={s.profile__friends_img} src={friendsAvatar}/>
+                    <div className={s.profile__friends}>
+                        <span className={s.profile__friends_text}>{el.name}</span>
+                        <span className={s.profile__friends_text}>{el.email}</span>
+                        <span className={s.profile__friends_country}>{el.country}</span>
+                    </div>
+                </div>
+
+            <button className={s.btn}>{el.follow ? "Unfollow" : "Follow"}</button>
+        </li>
+    })
 
     const myPosts = props.posts.map(el => {
           return  <ProfilePost key={Math.random()}
@@ -128,7 +151,54 @@ export const Profile: React.FC <postsArrayType>  = (props) => {
             </div>
 
 
-            <div className={s.profile__right}></div>
+            <div className={s.profile__right}>
+
+                <div className={s.search__input_wrap}>
+                    <input placeholder="Search..." className={s.search__input}/>
+                </div>
+
+                <div className={s.profile__gallery}>
+                    <div className={s.profile__gallery_item}>
+                        <img className={s.profile__gallery_img} src={profileGalleryImg}/>
+                    </div>
+
+                    <div className={s.profile__gallery_item}>
+                        <img className={s.profile__gallery_img} src={profileGalleryImg}/>
+                    </div>
+
+                    <div className={s.profile__gallery_item}>
+                        <img className={s.profile__gallery_img} src={profileGalleryImg}/>
+                    </div>
+
+                    <div className={s.profile__gallery_item}>
+                        <img className={s.profile__gallery_img} src={profileGalleryImg}/>
+                    </div>
+
+                    <div className={s.profile__gallery_item}>
+                        <img className={s.profile__gallery_img} src={profileGalleryImg}/>
+                    </div>
+
+                    <div className={s.profile__gallery_item}>
+                        <img className={s.profile__gallery_img} src={profileGalleryImg}/>
+                    </div>
+                </div>
+
+                <div className={s.profile__friends_wrap}>
+                    <div className={s.profile__friends_header}>
+                        <h2 className={s.profile__friends_title}>
+                            Recommended friends
+                        </h2>
+                    </div>
+
+                    <ul className={s.profile__friends_list}>
+                        {profileFriends}
+                    </ul>
+
+                    <div className={s.profile__friends_all}>
+                        <NavLink className={s.profile__friends_link} to="/friends">Show more</NavLink>
+                    </div>
+                </div>
+            </div>
 
         </div>
     )
