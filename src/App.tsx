@@ -5,10 +5,15 @@ import {NavBar} from "./components/NavBar/NavBar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {statePropsType} from "./redux/state";
+import {appStateType} from "./redux/state";
+
+type appPropsType ={
+    state: appStateType
+}
 
 
-const App: React.FC <statePropsType> = (props ) => {
+const App = (props: appPropsType ) => {
+
     return (
         <BrowserRouter>
 
@@ -18,7 +23,10 @@ const App: React.FC <statePropsType> = (props ) => {
 
             <main className="main">
                 <NavBar/>
-                <Route path="/profile" render={() => <Profile posts={props.state.posts}/>}/>
+                <Route path="/profile" render={() => <Profile
+                                                        posts={props.state.profilePage.posts}
+                                                        friends={props.state.friends}
+                                                        />}/>
                 <Route path="/dialogs" component={Dialogs}/>
             </main>
 

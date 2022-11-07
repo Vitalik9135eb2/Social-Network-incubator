@@ -6,22 +6,22 @@ import {NavLink} from "react-router-dom";
 import arrow from "./../Image/icon_arrow-left.svg"
 import star from "./../Image/icon_star.svg"
 import calendar from "./../Image/icon_calendar.svg"
-import {postsArrayType} from "../../redux/state";
+import {friendsType, postType,} from "../../redux/state";
 
-export const Profile: React.FC <postsArrayType>  = (props) => {
+type profilePropsType ={
+    posts: Array<postType>
+    friends: Array<friendsType>
+}
+
+export const Profile = (props:profilePropsType) => {
 
     const profileBg = "https://na-dache.pro/uploads/posts/2021-05/1621545702_37-p-peizazhi-prirodi-45.jpg"
     const avatarDefoult = "https://drasler.ru/wp-content/uploads/2019/05/%D0%A4%D0%BE%D1%82%D0%BE-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8F-%D0%B4%D0%BB%D1%8F-%D0%B2%D0%B0%D1%82%D1%81%D0%B0%D0%BF-%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE-009.jpg"
     const friendsAvatar = "https://sunmag.me/wp-content/uploads/2019/11/sunmag-003-small-avatar.png"
     const profileGalleryImg ="https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-5-576x1024.jpg"
 
-    const profileFriendsData = [
-        {id:1, name:"Son", email: "@son.com", country: "India",  follow: false},
-        {id:2, name:"Anna", email: "anna@mail.ru", country: "France", follow: false},
-        {id:3, name:"Peter", email: "Peter1213@tut.by", country: "Italia", follow: false},
-    ]
 
-    const profileFriends = profileFriendsData.map(el => {
+    const profileFriends = props.friends.map(el => {
 
         return <li key={Math.random()} className={s.profile__friends_item}>
                 <div className={s.profile__friends_info}>
@@ -45,6 +45,13 @@ export const Profile: React.FC <postsArrayType>  = (props) => {
                                disLikes={el.disLikes}
                     />
     })
+
+    const postMessageRef = React.createRef<HTMLTextAreaElement>()
+
+    const addPostHandlerBtn = () => {
+        console.log(postMessageRef.current?.value)
+    }
+
 
     return (
         <div className={s.profile}>
@@ -138,8 +145,14 @@ export const Profile: React.FC <postsArrayType>  = (props) => {
 
                     <div className={s.profile__post}>
                         <div className={s.profile__newPost_wrap}>
-                            <textarea className={s.profile__newPost}/>
-                            <button className={`${s.btn} ${s.profile__newPost_btn}`}>Add post</button>
+                            <textarea className={s.profile__newPost}
+                                      ref={postMessageRef}
+                            />
+                            <button className={`${s.btn} ${s.profile__newPost_btn}`}
+                                    onClick={addPostHandlerBtn}
+                            >
+                                Add post
+                            </button>
                         </div>
 
                         <div className={s.profile__posts_wrap}>
