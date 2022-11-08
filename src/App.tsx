@@ -9,6 +9,7 @@ import {appStateType} from "./redux/state";
 
 type appPropsType ={
     state: appStateType
+    addPost: (postMessage:string) => void
 }
 
 
@@ -25,8 +26,11 @@ const App = (props: appPropsType ) => {
                 <NavBar/>
                 <Route path="/profile" render={() => <Profile
                                                         posts={props.state.profilePage.posts}
+                                                        defaultImg={props.state.defaultImg}
                                                         friends={props.state.friends}
-                                                        />}/>
+                                                        addPost={props.addPost}
+                                                        />}
+                />
                 <Route path="/dialogs" component={Dialogs}/>
             </main>
 
