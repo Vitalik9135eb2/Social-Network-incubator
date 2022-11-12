@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./profile.module.scss"
 import {ProfilePost} from "./ProfilePost/ProfilePost";
 import {NavLink} from "react-router-dom";
@@ -6,13 +6,14 @@ import {NavLink} from "react-router-dom";
 import arrow from "./../Image/icon_arrow-left.svg"
 import star from "./../Image/icon_star.svg"
 import calendar from "./../Image/icon_calendar.svg"
-import {defaultImgType, friendsType, postType,} from "../../redux/state";
+import {defaultImgType, friendsType, postType, profilePageType,} from "../../redux/state";
 
 type profilePropsType ={
-    posts: Array<postType>
+    profilePage: profilePageType
     defaultImg: defaultImgType
     friends: Array<friendsType>
     addPost: (postMessage:string) => void
+    updatePost: (newPost:string) => void
 }
 
 export const Profile = (props:profilePropsType) => {
@@ -34,7 +35,7 @@ export const Profile = (props:profilePropsType) => {
         </li>
     })
 
-    const myPosts = props.posts.map(el => {
+    const myPosts = props.profilePage.posts.map(el => {
           return  <ProfilePost key={Math.random()}
                                message={el.message}
                                likes={el.likes}
@@ -44,16 +45,17 @@ export const Profile = (props:profilePropsType) => {
 
     const postMessageRef = React.createRef<HTMLTextAreaElement>()
 
-    const addPostHandlerBtn = () => {
+    const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        if(postMessageRef.current){
+           e && props.updatePost(postMessageRef.current?.value)
+        }
+    }
 
+    const addPostHandlerBtn = () => {
         if(postMessageRef.current){
             props.addPost(postMessageRef.current?.value)
-
-            postMessageRef.current.value = ""
+            props.updatePost("")
         }
-
-
-        // console.log(postMessageRef.current?.value)
     }
 
 
@@ -151,6 +153,8 @@ export const Profile = (props:profilePropsType) => {
                         <div className={s.profile__newPost_wrap}>
                             <textarea className={s.profile__newPost}
                                       ref={postMessageRef}
+                                      onChange={onChangeTextareaHandler}
+                                      value={props.profilePage.newPost}
                             />
                             <button className={`${s.btn} ${s.profile__newPost_btn}`}
                                     onClick={addPostHandlerBtn}

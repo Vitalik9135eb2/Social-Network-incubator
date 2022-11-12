@@ -8,12 +8,12 @@ type DialogItemPropsType = {
 
 export const DialogItem = (props:DialogItemPropsType) => {
 
-    const messageClassName = props.name === "me" ? s.dialogs__message_my : s.dialogs__message
+    const messageClassName = props.name === "Me" ? s.dialogs__message_my : s.dialogs__message
 
     const pathAvatarMe = "https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg"
     const pathAvatar = "https://mixmag.io/wp-content/uploads/2021/05/discord-avatar-1024x576.jpg"
 
-    const userAvatar = props.name === "me" ? pathAvatarMe : pathAvatar
+    const userAvatar = props.name === "Me" ? pathAvatarMe : pathAvatar
 
     return(
         <div className={messageClassName}>
