@@ -2,6 +2,10 @@
 //     console.log("state update")
 // }
 
+import {text} from "stream/consumers";
+import {ProfilePageReducer} from "./reducers/ProfilePageReducer";
+import {DialogsPageReducer} from "./reducers/DialogsPageReducer";
+
 export type defaultImgType ={
     profileBg: string
     userAvatar: string
@@ -45,12 +49,48 @@ export type appStateType ={
 export type storeType ={
     _state:appStateType
     getState: () => appStateType
-    addPost: (postMessage:string) => void
-    updatePost:(postMessage:string) => void
-    addDialogMessage:(myMessage: string) => void
-    updateMessage:(myMessage:string) => void
     _renderTree: () => void
     subscribe: (observer:() =>void) => void
+    dispatch: (action: ActionsTypes) => void
+}
+
+
+// type AddPostActionType ={
+//     type: "ADD-POST"
+//     postMessage: string
+// }
+// type UpdatePostActionType ={
+//     type: "UPDATE-POST"
+//     postMessage: string
+// }
+
+export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof UpdatePostAC>
+    | ReturnType<typeof AddDialogAC> | ReturnType<typeof UpdateDialogAC>
+
+export const AddPostAC = (textMessage:string) =>{
+    return{
+        type: "ADD-POST",
+        postMessage: textMessage
+    } as const
+}
+export const UpdatePostAC = (text:string) => {
+    return{
+        type: "UPDATE-POST",
+        postMessage: text
+    } as const
+}
+
+export const AddDialogAC = (text: string) => {
+    return{
+        type: "ADD-DIALOG",
+        myMessage: text,
+    } as const
+}
+export const UpdateDialogAC = (text: string) => {
+    return{
+        type: "UPDATE-DIALOG",
+        dialogMessage: text
+    } as const
 }
 
 
@@ -100,80 +140,71 @@ const store: storeType = {
     getState() {
         return this._state
     },
-    addPost (postMessage:string) {
-        const newPost: postType ={
-            id: 5,
-            message: postMessage,
-            likes: 0,
-            disLikes: 0
-        }
-        this._state.profilePage.posts.unshift(newPost)
-        this._renderTree()
-    },
-    updatePost(postMessage:string){
-        this._state.profilePage.newPost = postMessage
-        this._renderTree()
-
-    },
-    addDialogMessage(myMessage: string) {
-        const newMessage: dialogsType = {
-            id: Math.random(),
-            message: myMessage,
-            user: "Me"
-        }
-        this._state.dialogsPage.dialogs.push(newMessage)
-        this._renderTree()
-    },
-    updateMessage(myMessage:string) {
-        this._state.dialogsPage.newMessage = myMessage
-        this._renderTree()
-
-    },
     _renderTree() {
         console.log("state update")
     },
     subscribe (observer) {
         this._renderTree = observer
-    }
+    },
+
+
+    dispatch(action){
+
+        this._state.profilePage = ProfilePageReducer(this._state.profilePage, action)
+
+        this._state.dialogsPage = DialogsPageReducer(this._state.dialogsPage, action)
+
+        switch (action.type){
+            // case "ADD-POST":
+            //     const newPost: postType ={
+            //         id: 5,
+            //         message: action.postMessage,
+            //         likes: 0,
+            //         disLikes: 0
+            //     }
+            //     this._state.profilePage.posts.unshift(newPost)
+            //     this._renderTree()
+            //     return this._state
+            // case "UPDATE-POST":
+            //     this._state.profilePage.newPost = action.postMessage
+            //     this._renderTree()
+            //     return this._state
+            // case "ADD-DIALOG":
+            //     const newMessage: dialogsType = {
+            //         id: Math.random(),
+            //         message: action.myMessage,
+            //         user: "Me"
+            //     }
+            //     this._state.dialogsPage.dialogs.push(newMessage)
+            //
+            //     return this._state
+            // case "UPDATE-DIALOG":
+            //     this._state.dialogsPage.newMessage = action.dialogMessage
+            //     this._renderTree()
+            //     return this._state
+        }
+
+
+       this._renderTree()
+
+    },
+
+    // addDialogMessage(myMessage: string) {
+    //     const newMessage: dialogsType = {
+    //         id: Math.random(),
+    //         message: myMessage,
+    //         user: "Me"
+    //     }
+    //     this._state.dialogsPage.dialogs.push(newMessage)
+    //     this._renderTree()
+    // },
+    // updateMessage(myMessage:string) {
+    //     this._state.dialogsPage.newMessage = myMessage
+    //     this._renderTree()
+    //
+    // }
+
 }
 
-
-// export const addPost = (postMessage:string) => {
-//
-//     const newPost: postType ={
-//         id: 5,
-//         message: postMessage,
-//         likes: 0,
-//         disLikes: 0
-//     }
-//     state.profilePage.posts.unshift(newPost)
-//     renderTree()
-// }
-
-// export const updatePost = (postMessage:string) => {
-//     state.profilePage.newPost = postMessage
-//     renderTree()
-//
-// }
-
-// export const addDialogMessage = (myMessage: string) => {
-//     const newMessage: dialogsType = {
-//         id: Math.random(),
-//         message: myMessage,
-//         user: "Me"
-//     }
-//     state.dialogsPage.dialogs.push(newMessage)
-//     renderTree()
-// }
-
-// export const updateMessage = (myMessage:string) => {
-//     state.dialogsPage.newMessage = myMessage
-//     renderTree()
-//
-// }
-
-// export const subscribe = (observer: () => void) => {
-//     renderTree = observer
-// }
 
 export default store

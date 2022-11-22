@@ -2,12 +2,11 @@ import React, {ChangeEvent, useState} from "react";
 import s from "./dialogs.module.scss"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {DialogUser} from "./DialogUser/DialogUser";
-import {dialogsPageType} from "../../redux/state";
+import {ActionsTypes, AddDialogAC, dialogsPageType, UpdateDialogAC} from "../../redux/state";
 
 type dialogsPagePropsType = {
     dialogsPage: dialogsPageType
-    addDialogMessage: (message:string) => void
-    updateMessage: (message:string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Dialogs = (props:dialogsPagePropsType) => {
@@ -21,14 +20,14 @@ export const Dialogs = (props:dialogsPagePropsType) => {
     const addDialogMessageHandlerBtn = () => {
 
         if(postMessageRef.current){
-            props.addDialogMessage(postMessageRef.current?.value)
-            props.updateMessage(" ")
+            props.dispatch(AddDialogAC(postMessageRef.current?.value))
+            props.dispatch(UpdateDialogAC(""))
         }
     }
 
     const onchangeInputHandler = (e: ChangeEvent<HTMLInputElement>) =>{
         if(postMessageRef.current){
-            e && props.updateMessage(postMessageRef.current?.value)
+            e && props.dispatch(UpdateDialogAC(postMessageRef.current?.value))
         }
     }
 

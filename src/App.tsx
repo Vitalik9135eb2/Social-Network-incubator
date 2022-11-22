@@ -33,14 +33,13 @@ const App: FC<appPropsType> = (props) => {
                                                         profilePage={state.profilePage}
                                                         defaultImg={state.defaultImg}
                                                         friends={state.friends}
-                                                        addPost={props.store.addPost.bind(props.store)}
-                                                        updatePost={props.store.updatePost.bind(props.store)}
+                                                        dispatch={props.store.dispatch.bind(props.store)}
                 />}
                 />
                 <Route path="/dialogs" render={() => <Dialogs
                                                         dialogsPage={state.dialogsPage}
-                                                        addDialogMessage={props.store.addDialogMessage}
-                                                        updateMessage={props.store.updateMessage}
+                                                        dispatch={props.store.dispatch.bind(props.store)}
+
                                                         />
                 }/>
             </main>

@@ -6,14 +6,21 @@ import {NavLink} from "react-router-dom";
 import arrow from "./../Image/icon_arrow-left.svg"
 import star from "./../Image/icon_star.svg"
 import calendar from "./../Image/icon_calendar.svg"
-import {defaultImgType, friendsType, postType, profilePageType,} from "../../redux/state";
+import {
+    ActionsTypes,
+    AddPostAC,
+    defaultImgType,
+    friendsType,
+    postType,
+    profilePageType,
+    UpdatePostAC,
+} from "../../redux/state";
 
 type profilePropsType ={
     profilePage: profilePageType
     defaultImg: defaultImgType
     friends: Array<friendsType>
-    addPost: (postMessage:string) => void
-    updatePost: (newPost:string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Profile = (props:profilePropsType) => {
@@ -47,14 +54,14 @@ export const Profile = (props:profilePropsType) => {
 
     const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         if(postMessageRef.current){
-           e && props.updatePost(postMessageRef.current?.value)
+            e && props.dispatch(UpdatePostAC(postMessageRef.current?.value ))
         }
     }
 
     const addPostHandlerBtn = () => {
         if(postMessageRef.current){
-            props.addPost(postMessageRef.current?.value)
-            props.updatePost("")
+            props.dispatch(AddPostAC(postMessageRef.current?.value))
+            props.dispatch(UpdatePostAC(""))
         }
     }
 
