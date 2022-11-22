@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import state, {addDialogMessage, addPost, appStateType, subscribe, updateMessage, updatePost} from "./redux/state"
+import store from "./redux/state"
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -9,11 +9,11 @@ import App from "./App";
 
 let renderTree = () => {
     ReactDOM.render(
-        <App state={state}
-             addPost={addPost}
-             updatePost={updatePost}
-             addDialogMessage={addDialogMessage}
-             updateMessage={updateMessage}
+        <App store={store}
+             // addPost={store.addPost}
+             // updatePost={store.updatePost}
+             // addDialogMessage={store.addDialogMessage}
+             // updateMessage={store.updateMessage}
         />,
         document.getElementById('root')
     );
@@ -21,5 +21,5 @@ let renderTree = () => {
 
 renderTree()
 
-subscribe(renderTree)
+store.subscribe(renderTree)
 
