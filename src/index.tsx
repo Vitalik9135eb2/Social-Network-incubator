@@ -9,12 +9,7 @@ import App from "./App";
 
 let renderTree = () => {
     ReactDOM.render(
-        <App store={store}
-             // addPost={store.addPost}
-             // updatePost={store.updatePost}
-             // addDialogMessage={store.addDialogMessage}
-             // updateMessage={store.updateMessage}
-        />,
+        <App store={store} />,
         document.getElementById('root')
     );
 }
