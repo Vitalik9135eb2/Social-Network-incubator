@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./profilePost.module.scss";
 
-import likeImg from "./../../Image/like.svg"
+import likeImg from "../../../Image/like.svg"
 
 type PostPropsType ={
     message: string
