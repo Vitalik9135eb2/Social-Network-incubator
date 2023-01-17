@@ -35,15 +35,11 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
                 likes: 0,
                 disLikes: 0
             }
-            state.posts.unshift(newPost)
-            return state
+            return {...state, posts:[newPost,...state.posts]}
 
         case "UPDATE-POST":
-            console.log(action)
 
-            state.newPost = action.postMessage
-
-            return state
+            return {...state, newPost: action.postMessage }
 
         default:
             return state

@@ -47,7 +47,7 @@ export type storeType ={
 
 export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof UpdatePostAC>
 
-    | ReturnType<typeof AddDialogAC> | ReturnType<typeof UpdateDialogAC>
+    | ReturnType<typeof AddDialogAC> | ReturnType<typeof UpdateDialogAC> | ReturnType<typeof UsersAC>
 
 export const AddPostAC = (textMessage:string) =>{
     return{
@@ -72,6 +72,12 @@ export const UpdateDialogAC = (text: string) => {
     return{
         type: "UPDATE-DIALOG",
         dialogMessage: text
+    } as const
+}
+
+export const UsersAC = () => {
+    return{
+        type: "Users"
     } as const
 }
 

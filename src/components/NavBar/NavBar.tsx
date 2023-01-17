@@ -35,6 +35,13 @@ export const NavBar = () => {
             </li>
 
             <li className={s.navBar__item}>
+                <NavLink className={s.navBar__link} activeClassName={s.active} to="/users">
+                    <img className={s.navBar__icon} src={news}/>
+                    <span>Users</span>
+                </NavLink>
+            </li>
+
+            <li className={s.navBar__item}>
                 <NavLink className={s.navBar__link} activeClassName={s.active} to="/news">
                     <img className={s.navBar__icon} src={news}/>
                     <span>News</span>

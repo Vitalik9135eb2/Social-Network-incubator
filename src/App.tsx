@@ -5,6 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {AppRooStateType, ReduxStoreType} from "./redux/store";
+import {Users} from "./components/Users/Users";
 
 
 
@@ -25,6 +26,8 @@ const App = () => {
 
 
                 <Route path="/dialogs" render={() => <Dialogs /> }/>
+
+                <Route path="/users" render={() => <Users/> }/>
             </main>
 
 

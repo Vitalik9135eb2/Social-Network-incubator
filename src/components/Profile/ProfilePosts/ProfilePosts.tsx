@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 import {ProfilePost} from "./ProfilePost/ProfilePost";
 import s from "../profile.module.scss";
 import {ActionsTypes, AddPostAC, postType, profilePageType, UpdatePostAC} from "../../../redux/state";
+import {profilePageReducer} from "../../../redux/reducers/ProfilePageReducer";
 
 
 type ProfilePostsPropsType ={
@@ -12,7 +13,6 @@ type ProfilePostsPropsType ={
 }
 
 export const  ProfilePosts = (props: ProfilePostsPropsType) =>{
-
     const myPosts = props.posts.map(el => {
         return  <ProfilePost key={Math.random()}
                              message={el.message}
@@ -35,6 +35,7 @@ export const  ProfilePosts = (props: ProfilePostsPropsType) =>{
         if(postMessageRef.current){
             props.addPostText(postMessageRef.current?.value)
             props.updatePostText("")
+            console.log(props.newPost)
         }
     }
 
