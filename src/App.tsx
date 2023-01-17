@@ -6,13 +6,10 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {AppRooStateType, ReduxStoreType} from "./redux/store";
 
-type appPropsType ={
-    store: ReduxStoreType
-
-}
 
 
-const App: FC<appPropsType> = (props) => {
+
+const App = () => {
 
 
     return (
@@ -24,10 +21,10 @@ const App: FC<appPropsType> = (props) => {
             <main className="main">
                 <NavBar/>
 
-                <Route path="/profile" render={() => <Profile store={props.store}  /> }/>
+                <Route path="/profile" render={() => <Profile /> }/>
 
 
-                <Route path="/dialogs" render={() => <Dialogs store={props.store}  /> }/>
+                <Route path="/dialogs" render={() => <Dialogs /> }/>
             </main>
 
 

@@ -1,21 +1,10 @@
-import React, {ChangeEvent, useState} from "react";
+import React from "react";
 import s from "./dialogs.module.scss"
-import {DialogItem} from "./DialogItem/DialogItem";
 import {DialogUser} from "./DialogUser/DialogUser";
-import {ActionsTypes, AddDialogAC, dialogsPageType, UpdateDialogAC} from "../../redux/state";
 import {DialogChatContainer} from "./DialogChat/DialogChatContainer";
-import {ReduxStoreType} from "../../redux/store";
-
-type dialogsPagePropsType = {
-    store: ReduxStoreType
-
-}
-
-export const Dialogs = (props:dialogsPagePropsType) => {
 
 
-
-
+export const Dialogs = () => {
 
     return (
         <div className={s.dialogs}>
@@ -24,7 +13,7 @@ export const Dialogs = (props:dialogsPagePropsType) => {
                 <DialogUser name={"Toni"} id={"2"}/>
             </ul>
 
-            <DialogChatContainer store={props.store}/>
+            <DialogChatContainer/>
 
         </div>
     )

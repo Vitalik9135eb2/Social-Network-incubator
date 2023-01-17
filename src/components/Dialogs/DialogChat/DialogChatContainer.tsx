@@ -1,26 +1,40 @@
 import React from "react";
 import {DialogChat} from "./DialogChat";
-import {ReduxStoreType} from "../../../redux/store";
-import {AddDialogAC, UpdateDialogAC} from "../../../redux/state";
+import {AppRooStateType, ReduxStoreType} from "../../../redux/store";
+import {AddDialogAC, dialogsType, UpdateDialogAC} from "../../../redux/state";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
 
 
-type DialogChatContainerPropsType ={
-    store:ReduxStoreType
+type MapStatePropsType ={
+    dialogs: Array<dialogsType>
+    newMessage: string
+}
+type MapDispatchPropsType = {
+    updateInputText: (text:string) => void
+    addNewMessage:(text:string) => void
 }
 
-export const DialogChatContainer = (props: DialogChatContainerPropsType) => {
+export type DialogPropsType = MapStatePropsType & MapDispatchPropsType
 
-    const state = props.store.getState()
-
-    const updateInputText = (text:string) =>{
-        props.store.dispatch.bind(props.store)(UpdateDialogAC(text))
+const mapStateToProps = (state:AppRooStateType):MapStatePropsType =>{
+    return{
+        dialogs: state.dialogsPage.dialogs,
+        newMessage: state.dialogsPage.newMessage
     }
-
-    const addNewMessage = (text:string) => {
-        props.store.dispatch.bind(props.store)(AddDialogAC(text))
-    }
-
-    return(
-        <DialogChat dialogs={state.dialogsPage.dialogs} newMessage={state.dialogsPage.newMessage} updateInputText={updateInputText} addNewMessage={addNewMessage}/>
-    )
 }
+
+
+const mapDispatchToProps = (dispatch: Dispatch ):MapDispatchPropsType => {
+    return{
+        updateInputText: (text:string) => {
+            dispatch(UpdateDialogAC(text))
+        },
+
+        addNewMessage: (text: string) => {
+            dispatch(AddDialogAC(text))
+        }
+    }
+}
+
+export const DialogChatContainer = connect(mapStateToProps,mapDispatchToProps)(DialogChat)

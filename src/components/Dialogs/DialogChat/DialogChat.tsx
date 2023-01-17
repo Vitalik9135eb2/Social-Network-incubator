@@ -1,18 +1,13 @@
 import React, {ChangeEvent} from "react";
 import s from "../dialogs.module.scss";
 import {DialogItem} from "../DialogItem/DialogItem";
-import {AddDialogAC, dialogsType, UpdateDialogAC} from "../../../redux/state";
+import {DialogPropsType} from "./DialogChatContainer";
 
 
-type DialogChatPropsType ={
-    dialogs: Array<dialogsType>
-    newMessage: string
-    updateInputText: (text:string) =>void
-    addNewMessage: (text:string) =>void
-}
 
 
-export const DialogChat = (props: DialogChatPropsType) => {
+export const DialogChat = (props: DialogPropsType) => {
+
     const dialogsMessage = props.dialogs.map(el => {
         return <DialogItem key={el.id} message={el.message} name={el.user}/>
     })
@@ -29,7 +24,6 @@ export const DialogChat = (props: DialogChatPropsType) => {
 
     const onchangeInputHandler = (e: ChangeEvent<HTMLInputElement>) =>{
         if(postMessageRef.current){
-            // e && props.dispatch(UpdateDialogAC(postMessageRef.current?.value))
             e && props.updateInputText(postMessageRef.current?.value)
         }
     }

@@ -1,14 +1,10 @@
 import React from "react";
 import s from "../profile.module.scss";
-import {friendsAvatar, friendsType, profileGalleryImg} from "../../../redux/state";
+import {friendsAvatar, profileGalleryImg} from "../../../redux/state";
 import {NavLink} from "react-router-dom";
+import {ProfileRightPanelPropsType} from "./ProfileRightPanelContainer";
 
 
-type ProfileRightPanelPropsType ={
-    friends: Array<friendsType>
-
-
-}
 
 export  const ProfileRightPanel = (props: ProfileRightPanelPropsType) => {
     const profileFriends = props.friends.map(el => {

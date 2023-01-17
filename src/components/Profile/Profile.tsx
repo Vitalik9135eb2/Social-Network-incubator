@@ -2,33 +2,16 @@ import React, {ChangeEvent} from "react";
 import s from "./profile.module.scss"
 import {NavLink} from "react-router-dom";
 
-import arrow from "./../Image/icon_arrow-left.svg"
-import star from "./../Image/icon_star.svg"
-import calendar from "./../Image/icon_calendar.svg"
-
-import {
-    ActionsTypes,
-    AddPostAC, avatarDefault, friendsAvatar,
-    friendsType,
-    postType, profileBg, profileGalleryImg,
-    profilePageType,
-    UpdatePostAC,
-} from "../../redux/state";
-
 
 import {ProfileRightPanel} from "./ProfileRightPanel/ProfileRightPanel";
-import {ProfilePosts} from "./ProfilePosts/ProfilePosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import { ReduxStoreType} from "../../redux/store";
 import {ProfilePostsContainer} from "./ProfilePosts/ProfilePostsContainer";
+import {ProfileRightPanelContainer} from "./ProfileRightPanel/ProfileRightPanelContainer";
 
-type profilePropsType = {
-    store: ReduxStoreType
-}
 
-export const Profile = (props: profilePropsType) => {
 
-    const state = props.store.getState()
+export const Profile = () => {
+
     return (
         <div className={s.profile}>
             <div className={s.profile__left}>
@@ -62,13 +45,13 @@ export const Profile = (props: profilePropsType) => {
                         </li>
                     </ul>
 
-                 <ProfilePostsContainer store={props.store}/>
+                 <ProfilePostsContainer/>
                 </div>
 
             </div>
 
 
-            <ProfileRightPanel friends={state.dialogsPage.friends}/>
+            <ProfileRightPanelContainer/>
 
         </div>
     )
