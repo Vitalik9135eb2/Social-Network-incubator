@@ -2,13 +2,24 @@ import s from "./user.module.scss"
 
 type UserType = {
     name: string
+    id: number
     email: string
     country: string
     follow: boolean
     avatar: string
+    onFollow: (id:number) => void
+    onUnfollow: (id:number) => void
 }
 
 export const User = (props: UserType) => {
+
+    const onFollowHandler = () =>{
+        props.onUnfollow(props.id)
+    }
+
+    const onUnfollowHandler = () =>{
+        props.onFollow(props.id)
+    }
 
     return (
         <div className={s.user__wrap}>
@@ -18,8 +29,8 @@ export const User = (props: UserType) => {
 
                 {
                     props.follow ?
-                        <span className={`${s.user__follow} ${s.active}`}>Unfollow</span>
-                        : <span className={s.user__follow}>Follow</span>
+                        <span onClick={onFollowHandler} className={`${s.user__follow} ${s.active}`}>Unfollow</span>
+                        : <span onClick={onUnfollowHandler} className={s.user__follow}>Follow</span>
                 }
 
             </div>
