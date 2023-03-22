@@ -4,9 +4,11 @@ type UserType = {
     name: string
     id: number
     email: string
+    status: string
     country: string
     follow: boolean
     avatar: string
+    photo: string
     onFollow: (id:number) => void
     onUnfollow: (id:number) => void
 }
@@ -21,11 +23,15 @@ export const User = (props: UserType) => {
         props.onFollow(props.id)
     }
 
+    const photoUser = props.photo ? props.photo : props.avatar
+
+
     return (
         <div className={s.user__wrap}>
 
             <div className={s.user__avatarWrap}>
-                <img src={props.avatar} className={s.user__avatar}/>
+
+                <img src={photoUser} className={s.user__avatar}/>
 
                 {
                     props.follow ?
@@ -42,10 +48,7 @@ export const User = (props: UserType) => {
                     <div className={s.user__statusWrap}>
                         <span className={s.user__statusTitle}>Status:</span>
                         <p className={s.user__statusText}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Atque commodi consequatur cum eaque, eum facere maxime minus
-                            nesciunt officia optio possimus praesentium, provident quae
-                            quasi recusandae repellat sunt vero vitae.
+                            {props.status ? props.status : "no status"}
                         </p>
                     </div>
                 </div>
@@ -53,12 +56,12 @@ export const User = (props: UserType) => {
                 <div className={s.user__about}>
                     <div className={s.user__aboutWrap}>
                         <span className={s.user__aboutTitle}>Email:</span>
-                        <span className={s.user__aboutText}>{props.email}</span>
+                        <span className={s.user__aboutText}>{props.email ? props.email : "---"}</span>
                     </div>
 
                     <div className={s.user__aboutWrap}>
                         <span className={s.user__aboutTitle}>Country:</span>
-                        <span className={s.user__aboutText}>{props.country}</span>
+                        <span className={s.user__aboutText}>{props.country ? props.country : "---"}</span>
                     </div>
                 </div>
 

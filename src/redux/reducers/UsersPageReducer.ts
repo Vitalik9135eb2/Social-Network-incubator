@@ -1,11 +1,17 @@
 
+type PhotosUserType = {
+    small: string
+    large: string
+}
 
 export type UserType ={
     id: number
     name: string
     email: string
+    status: string
     country: string
     follow: boolean
+    photos: PhotosUserType
 }
 
 type InitialStateUsersType ={
@@ -17,10 +23,10 @@ type ActionsTypes = ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> 
 
 const initialState: InitialStateUsersType ={
     users:[
-        {id:1, name:"Son", email: "@son.com", country: "India",   follow: true},
-        {id:2, name:"Son", email: "@son.com", country: "India",   follow: false},
-        {id:3, name:"Son", email: "@son.com", country: "India",   follow: false},
-        {id:4, name:"Son", email: "@son.com", country: "India",   follow: false},
+        // {id:1, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: true},
+        // {id:2, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: false},
+        // {id:3, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: false},
+        // {id:4, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: false},
     ]
 }
 
