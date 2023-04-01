@@ -16,18 +16,19 @@ export type UserType ={
 
 type InitialStateUsersType ={
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 
-type ActionsTypes = ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC>
+type ActionsTypes = ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC> | ReturnType<typeof setTotalUserCountAC>
 
-const initialState: InitialStateUsersType ={
-    users:[
-        // {id:1, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: true},
-        // {id:2, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: false},
-        // {id:3, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: false},
-        // {id:4, name:"Son", email: "@son.com", status: "textxzvcxzxz", country: "India",   follow: false},
-    ]
+const initialState: InitialStateUsersType = {
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 26,
+    currentPage: 4
 }
 
 export const usersPageReducer = (state:InitialStateUsersType = initialState, action:ActionsTypes): InitialStateUsersType => {
@@ -42,9 +43,15 @@ export const usersPageReducer = (state:InitialStateUsersType = initialState, act
             return {...state,users: state.users.map(el => el.id === action.id ? {...el, follow: false}: el )}
 
         case "SET__USERS":
-           // return {...state, users: [...state.users,action.users]}
-            return {...state,
-                users: [...state.users,...action.users]}
+           return {...state, users: action.users}
+           //  return {...state,
+           //      users: [...state.users,...action.users]}
+
+        case "SET__CURRENT_PAGE":
+            return {...state, currentPage: action.currentPage}
+
+        case "SET__TOTAL_COUNT":
+            return {...state, totalUsersCount: action.totalPage}
 
         default:
             return state
@@ -72,3 +79,16 @@ export const setUsersAC = (users: Array<UserType>) => {
     } as const
 }
 
+export const setCurrentPageAC = (page:number) => {
+    return{
+        type: "SET__CURRENT_PAGE",
+        currentPage: page
+    } as const
+}
+
+export const setTotalUserCountAC = (page:number) => {
+    return{
+        type: "SET__TOTAL_COUNT",
+        totalPage: page
+    } as const
+}
