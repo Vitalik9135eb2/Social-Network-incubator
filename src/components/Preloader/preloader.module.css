@@ -1,0 +1,18 @@
+
+
+.wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(37, 51, 65, 0.24);
+}
+
+img{
+    width: 350px;
+    height: 350px;
+}

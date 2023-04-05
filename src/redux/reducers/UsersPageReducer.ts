@@ -19,16 +19,24 @@ type InitialStateUsersType ={
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 
-type ActionsTypes = ReturnType<typeof followAC> | ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC> | ReturnType<typeof setTotalUserCountAC>
+type ActionsTypes = ReturnType<typeof followAC> |
+                    ReturnType<typeof unFollowAC> |
+                    ReturnType<typeof setUsersAC> |
+                    ReturnType<typeof setCurrentPageAC> |
+                    ReturnType<typeof setTotalUserCountAC> |
+                    ReturnType<typeof isFetchingAC>
 
 const initialState: InitialStateUsersType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 26,
-    currentPage: 4
+    currentPage: 4,
+    isFetching: false
+
 }
 
 export const usersPageReducer = (state:InitialStateUsersType = initialState, action:ActionsTypes): InitialStateUsersType => {
@@ -44,8 +52,6 @@ export const usersPageReducer = (state:InitialStateUsersType = initialState, act
 
         case "SET__USERS":
            return {...state, users: action.users}
-           //  return {...state,
-           //      users: [...state.users,...action.users]}
 
         case "SET__CURRENT_PAGE":
             return {...state, currentPage: action.currentPage}
@@ -53,6 +59,8 @@ export const usersPageReducer = (state:InitialStateUsersType = initialState, act
         case "SET__TOTAL_COUNT":
             return {...state, totalUsersCount: action.totalPage}
 
+        case "TOGGLE_IS_FETCHING":
+            return { ...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -70,25 +78,27 @@ export  const unFollowAC = (userID: number) =>{
         id: userID
     } as const
 }
-
-
 export const setUsersAC = (users: Array<UserType>) => {
     return{
         type: "SET__USERS",
       users
     } as const
 }
-
 export const setCurrentPageAC = (page:number) => {
     return{
         type: "SET__CURRENT_PAGE",
         currentPage: page
     } as const
 }
-
 export const setTotalUserCountAC = (page:number) => {
     return{
         type: "SET__TOTAL_COUNT",
         totalPage: page
+    } as const
+}
+export const isFetchingAC = (state: boolean) =>{
+    return{
+        type: "TOGGLE_IS_FETCHING",
+        isFetching: state
     } as const
 }
