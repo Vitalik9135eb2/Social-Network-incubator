@@ -1,6 +1,6 @@
 import React from "react";
 import  s from "./users.module.scss"
-import {UsersListContainer} from "./UsersList/UsersListContainer";
+import UsersListContainer from "./UsersList/UsersListContainer";
 
 
 

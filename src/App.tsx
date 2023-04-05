@@ -4,7 +4,6 @@ import {NavBar} from "./components/NavBar/NavBar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {AppRooStateType, ReduxStoreType} from "./redux/store";
 import {Users} from "./components/Users/Users";
 
 

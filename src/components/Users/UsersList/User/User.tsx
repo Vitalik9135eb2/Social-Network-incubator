@@ -64,10 +64,7 @@ export const User = (props: UserType) => {
                         <span className={s.user__aboutText}>{props.country ? props.country : "---"}</span>
                     </div>
                 </div>
-
-
             </div>
-
 
         </div>
     )
