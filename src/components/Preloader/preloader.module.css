@@ -12,7 +12,7 @@
     background-color: rgba(37, 51, 65, 0.24);
 }
 
-img{
+.wrap > img{
     width: 350px;
     height: 350px;
 }
