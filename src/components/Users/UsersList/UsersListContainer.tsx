@@ -114,33 +114,14 @@ const mapStateToProps = (state: AppRooStateType): MapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
 
-        unFollow: (userId: number) => {
-            dispatch(unFollowAC(userId))
-        },
+export default connect(mapStateToProps, {
+    follow:followAC,
+    unFollow: unFollowAC,
+    setUsers: setUsersAC,
+    setCurrentPage:setCurrentPageAC,
+    setTotalUserCount: setTotalUserCountAC,
+    isFetchingFunc:isFetchingAC
 
-        setUsers: (users: Array<UserType>) => {
-            dispatch(setUsersAC(users))
-        },
-
-        setCurrentPage: (page: number) => {
-            dispatch(setCurrentPageAC(page))
-        },
-
-        setTotalUserCount: (page: number) => {
-            dispatch(setTotalUserCountAC(page))
-        },
-
-        isFetchingFunc: (state:boolean) => {
-            dispatch(isFetchingAC(state))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersListContainer)
+})(UsersListContainer)
