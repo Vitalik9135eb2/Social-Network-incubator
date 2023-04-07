@@ -5,6 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Users} from "./components/Users/Users";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 
@@ -21,7 +22,7 @@ const App = () => {
             <main className="main">
                 <NavBar/>
 
-                <Route path="/profile" render={() => <Profile /> }/>
+                <Route path="/profile" render={() => <ProfileContainer /> }/>
 
 
                 <Route path="/dialogs" render={() => <Dialogs /> }/>

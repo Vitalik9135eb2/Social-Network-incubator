@@ -1,12 +1,12 @@
 import React, {ChangeEvent} from "react";
 import {ProfilePost} from "./ProfilePost/ProfilePost";
 import s from "../profile.module.scss";
-import {postType} from "../../../redux/state";
+import {PostType} from "../../../redux/reducers/ProfilePageReducer";
 
 
 type ProfilePostsPropsType ={
     newPost: string
-    posts: Array<postType>
+    posts: Array<PostType>
     updatePostText:(text:string)=>void
     addPostText:(text:string)=>void
 }

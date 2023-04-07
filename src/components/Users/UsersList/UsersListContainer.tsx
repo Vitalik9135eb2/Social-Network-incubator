@@ -14,7 +14,6 @@ import React from "react";
 import axios from "axios";
 import {UsersList} from "./User/UsersList";
 import {Preloader} from "../../Preloader/Preloader";
-import state from "../../../redux/state";
 
 
 export type UsersListPropsType = {

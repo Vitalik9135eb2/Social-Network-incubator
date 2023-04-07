@@ -8,7 +8,7 @@ type FriendType ={
     follow: boolean
 
 }
-type DialogsType = {
+export type DialogsType = {
     id:number
     message:string
     user:string
@@ -23,18 +23,7 @@ type InitialStateType ={
 
 export type ActionsTypes = ReturnType<typeof AddDialogAC> | ReturnType<typeof UpdateDialogAC>
 
-export const AddDialogAC = (text: string) => {
-    return{
-        type: "ADD-DIALOG",
-        myMessage: text,
-    } as const
-}
-export const UpdateDialogAC = (text: string) => {
-    return{
-        type: "UPDATE-DIALOG",
-        dialogMessage: text
-    } as const
-}
+
 
 const initialState: InitialStateType = {
 
@@ -76,3 +65,15 @@ export const dialogsPageReducer = (state: InitialStateType = initialState, actio
    }
 };
 
+export const AddDialogAC = (text: string) => {
+    return{
+        type: "ADD-DIALOG",
+        myMessage: text,
+    } as const
+}
+export const UpdateDialogAC = (text: string) => {
+    return{
+        type: "UPDATE-DIALOG",
+        dialogMessage: text
+    } as const
+}

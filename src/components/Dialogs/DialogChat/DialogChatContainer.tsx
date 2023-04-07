@@ -1,13 +1,13 @@
 import React from "react";
 import {DialogChat} from "./DialogChat";
 import {AppRooStateType, ReduxStoreType} from "../../../redux/store";
-import {AddDialogAC, dialogsType, UpdateDialogAC} from "../../../redux/state";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {AddDialogAC, DialogsType, UpdateDialogAC} from "../../../redux/reducers/DialogsPageReducer";
 
 
 type MapStatePropsType ={
-    dialogs: Array<dialogsType>
+    dialogs: Array<DialogsType>
     newMessage: string
 }
 type MapDispatchPropsType = {

@@ -2,8 +2,14 @@ import React from "react";
 import {connect} from "react-redux";
 import {ProfileRightPanel} from "./ProfileRightPanel";
 import {AppRooStateType} from "../../../redux/store";
-import {friendsType} from "../../../redux/state";
 
+type friendsType = {
+    id: number
+    name:string
+    email:string
+    country: string
+    follow: boolean
+}
 
 
 

@@ -1,4 +1,5 @@
 import s from "./user.module.scss"
+import {NavLink} from "react-router-dom";
 
 type UserType = {
     name: string
@@ -30,8 +31,10 @@ export const User = (props: UserType) => {
         <div className={s.user__wrap}>
 
             <div className={s.user__avatarWrap}>
+                <NavLink to={"/profile/" + props.id}>
+                    <img src={photoUser} className={s.user__avatar}/>
+                </NavLink>
 
-                <img src={photoUser} className={s.user__avatar}/>
 
                 {
                     props.follow ?

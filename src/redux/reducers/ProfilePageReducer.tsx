@@ -1,35 +1,41 @@
 import React from 'react';
-import {ActionsTypes, postType, profilePageType} from "../state";
 
 
 
-type PostType ={
+export type PostType ={
     id:number
     message: string
     likes:number
     disLikes: number
 }
-type ProfilePageType ={
+
+export type ProfilePageType ={
     posts: Array<PostType>
     newPost: string
+    profile: any
 }
+
+type ProfileActionType = ReturnType<typeof AddPostAC>| ReturnType<typeof UpdatePostAC> | ReturnType<typeof setUserAC>
+
 const initialState: ProfilePageType = {
         posts: [
             {id: 1, message: "HI I'am first post", likes: 7, disLikes: 0},
             {id: 2, message: "Coool dude!!", likes: 3, disLikes: 1},
             {id: 3, message: "Three posts", likes: 0, disLikes: 78}
         ],
-        newPost: ""
+        newPost: "",
+
+        profile: null
+
 
 }
 
-export const profilePageReducer = (state: ProfilePageType = initialState, action: ActionsTypes) :ProfilePageType=> {
+export const profilePageReducer = (state: ProfilePageType = initialState, action: ProfileActionType) :ProfilePageType=> {
 
 
     switch (action.type){
         case "ADD-POST":
-            console.log(action)
-            const newPost: postType ={
+            const newPost: PostType ={
                 id: 5,
                 message: action.postMessage,
                 likes: 0,
@@ -41,11 +47,34 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
 
             return {...state, newPost: action.postMessage }
 
+
+        case "SET_USER_PROFILE":
+            return {...state, profile: action.profile}
+
         default:
             return state
     };
 
 
-
 }
 
+const setUserAC = (profile:ProfilePageType) => {
+    return{
+        type: "SET_USER_PROFILE",
+        profile
+    } as const
+}
+
+export const AddPostAC = (textMessage:string) =>{
+    return{
+        type: "ADD-POST",
+        postMessage: textMessage
+    } as const
+}
+
+export const UpdatePostAC = (text:string) => {
+    return{
+        type: "UPDATE-POST",
+        postMessage: text
+    } as const
+}
