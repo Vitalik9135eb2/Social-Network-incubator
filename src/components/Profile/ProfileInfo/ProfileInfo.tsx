@@ -7,8 +7,8 @@ import {NavLink} from "react-router-dom";
 import arrow from "../../Image/icon_arrow-left.svg";
 
 
-export const ProfileInfo = () => {
-
+export const ProfileInfo = (props:any) => {
+    console.log(props)
     return (
         <>
             <div className={s.back}>

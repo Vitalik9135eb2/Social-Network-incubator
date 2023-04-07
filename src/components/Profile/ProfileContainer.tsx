@@ -26,14 +26,14 @@ class ProfileContainer extends React.Component<any> {
 
     render() {
         return (
-            <Profile />
+            <Profile profile={this.props.profile} />
         )
     }
 }
 
 
-let mapStateToProps = (state: ProfilePageType) => ({
-    profile: state.profile
+let mapStateToProps = (state: any) => ({
+    profile: state.profilePage
 })
 
 export default connect(mapStateToProps, {setUserProfile: setUsersAC}) (ProfileContainer);

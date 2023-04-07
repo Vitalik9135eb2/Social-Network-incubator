@@ -7,16 +7,20 @@ import {ProfileRightPanel} from "./ProfileRightPanel/ProfileRightPanel";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfilePostsContainer} from "./ProfilePosts/ProfilePostsContainer";
 import {ProfileRightPanelContainer} from "./ProfileRightPanel/ProfileRightPanelContainer";
+import {ProfilePageType} from "../../redux/reducers/ProfilePageReducer";
 
 
 
-export const Profile = () => {
+type ProfilePropsType = {
+    profile: any
+}
 
+export const Profile = (props: ProfilePropsType) => {
     return (
         <div className={s.profile}>
             <div className={s.profile__left}>
 
-                <ProfileInfo/>
+                <ProfileInfo info={props.profile}/>
 
                 <div className={s.profile__left_bottom}>
                     <ul className={s.profile__nav}>
