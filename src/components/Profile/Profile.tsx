@@ -12,7 +12,7 @@ import {ProfilePageType} from "../../redux/reducers/ProfilePageReducer";
 
 
 type ProfilePropsType = {
-    profile: any
+    profile: ProfilePageType
 }
 
 export const Profile = (props: ProfilePropsType) => {

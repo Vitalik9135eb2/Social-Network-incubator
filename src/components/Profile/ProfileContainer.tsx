@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import s from "./profile.module.scss"
-import {NavLink} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 
 
 import {ProfileRightPanel} from "./ProfileRightPanel/ProfileRightPanel";
@@ -17,7 +17,8 @@ import {ProfilePageType} from "../../redux/reducers/ProfilePageReducer";
 class ProfileContainer extends React.Component<any> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
+        let userId = this.props.match.params.userId;
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
             this.props.setUserProfile(response.data.items)
             // this.props.setTotalUserCount(response.data.totalCount)
             // this.props.isFetchingFunc(false)
@@ -31,9 +32,14 @@ class ProfileContainer extends React.Component<any> {
     }
 }
 
-
+type mapStateToPropsType = {
+    profile: ProfilePageType
+}
 let mapStateToProps = (state: any) => ({
     profile: state.profilePage
 })
 
-export default connect(mapStateToProps, {setUserProfile: setUsersAC}) (ProfileContainer);
+
+let WithRouterProfileComponent = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps, {setUserProfile: setUsersAC}) (WithRouterProfileComponent);

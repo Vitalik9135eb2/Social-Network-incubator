@@ -32,7 +32,7 @@ export const ProfileInfo = (props:any) => {
                 </div>
 
                 <div className={s.profile__user}>
-                    <span className={s.profile__name}>AccountName</span>
+                    <span className={s.profile__name}>{}</span>
                     <span className={s.profile__email}>@useremail</span>
                 </div>
 
