@@ -27,7 +27,9 @@ export const UsersList = (props: UsersListPropsType) => {
     }
 
     const paginationItem = allPages.map(el => {
+
         const classNameItem = props.currentPage === el ? `${s.pagination__item} ${s.active}`: `${s.pagination__item}`
+
         return <li key={el} className={classNameItem} onClick={() => {props.onPageChanged(el)} }>{el}</li>
     })
 

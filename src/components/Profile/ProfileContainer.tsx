@@ -6,7 +6,7 @@ import {NavLink, withRouter} from "react-router-dom";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {setUsersAC} from "../../redux/reducers/UsersPageReducer";
+import {setUserAC} from "../../redux/reducers/ProfilePageReducer";
 import {ProfilePageType} from "../../redux/reducers/ProfilePageReducer";
 
 
@@ -35,20 +35,17 @@ type ProfileContainerPropsType ={
 
 export const ProfileContainer = (props:any) => {
 
-    console.log(props)
     useEffect( ()=> {
         let userId = props.match.params.userId;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
         // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
             props.setUserProfile(response.data)
-            console.log(response.data)
-            // this.props.isFetchingFunc(false)
+            // props.isFetchingFunc(false)
         })
     }, [] )
 
     return(
             <Profile profile={props.profile} />
-
     )
 }
 
@@ -64,4 +61,4 @@ let mapStateToProps = (state: any) => ({
 
 let WithRouterProfileComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfile: setUsersAC}) (WithRouterProfileComponent);
+export default connect(mapStateToProps, {setUserProfile: setUserAC}) (WithRouterProfileComponent);

@@ -32,8 +32,8 @@ type ActionsTypes = ReturnType<typeof followAC> |
 
 const initialState: InitialStateUsersType = {
     users: [],
-    pageSize: 5,
-    totalUsersCount: 26,
+    pageSize: 15,
+    totalUsersCount: 260,
     currentPage: 4,
     isFetching: false
 

@@ -16,6 +16,7 @@ type ProfilePropsType = {
 }
 
 export const Profile = (props: ProfilePropsType) => {
+    console.log(props)
     return (
         <div className={s.profile}>
             <div className={s.profile__left}>

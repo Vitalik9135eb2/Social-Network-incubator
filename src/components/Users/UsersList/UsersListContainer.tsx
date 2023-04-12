@@ -54,7 +54,7 @@ export type UsersListPropsType = {
 //     }
 //
 //     render() {
-//
+//         console.log('props', this.props)
 //         return(
 //         <>
 //             { this.props.isFetching? <Preloader/> : null}
@@ -87,6 +87,7 @@ export const UsersListContainer = (props:UsersListPropsType) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`).then(response => {
             props.setUsers(response.data.items)
             // this.props.setTotalUserCount(response.data.totalCount)
+            console.log(response.data.items)
             props.isFetchingFunc(false)
         })
 
@@ -140,7 +141,7 @@ const mapStateToProps = (state: AppRooStateType): MapStatePropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
     }
 }
 

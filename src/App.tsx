@@ -17,9 +17,6 @@ const App = () => {
 
         <div className="App">
 
-
-
-
             <main className="main">
                 <NavBar/>
 

@@ -1,7 +1,7 @@
 import s from "./user.module.scss"
 import {NavLink} from "react-router-dom";
 
-type UserType = {
+type UserPropsType = {
     name: string
     id: number
     email: string
@@ -14,7 +14,7 @@ type UserType = {
     onUnfollow: (id:number) => void
 }
 
-export const User = (props: UserType) => {
+export const User = (props: UserPropsType) => {
 
     const onFollowHandler = () =>{
         props.onUnfollow(props.id)
@@ -32,7 +32,7 @@ export const User = (props: UserType) => {
 
             <div className={s.user__avatarWrap}>
                 <NavLink to={"/profile/" + props.id}>
-                    <img src={photoUser} className={s.user__avatar}/>
+                    <img src={ props.photo ? props.photo : photoUser} className={s.user__avatar}/>
                 </NavLink>
 
 

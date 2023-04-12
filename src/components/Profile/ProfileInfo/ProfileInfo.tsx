@@ -7,8 +7,12 @@ import {NavLink} from "react-router-dom";
 import arrow from "../../Image/icon_arrow-left.svg";
 
 
-export const ProfileInfo = (props:any) => {
-    console.log(props)
+export const ProfileInfo = (props: any) => {
+
+    const bgProfile = props.info.photos.large || profileBg
+
+    const avatar = props.info.photos.small || avatarDefault
+
     return (
         <>
             <div className={s.back}>
@@ -19,27 +23,28 @@ export const ProfileInfo = (props:any) => {
             </div>
 
             <div className={s.profile__bg}>
-                <img className={s.profile__bg_img} src={profileBg}/>
+                <img className={s.profile__bg_img} src={bgProfile}/>
             </div>
 
             <div className={s.profile__info}>
                 <div className={s.profile__info_top}>
                     <div className={s.profile__avatar_wrap}>
-                        <img className={s.profile__avatar} src={avatarDefault}/>
+                        <img className={s.profile__avatar} src={avatar}/>
                     </div>
 
                     <button className={s.btn}>Follow</button>
                 </div>
 
                 <div className={s.profile__user}>
-                    <span className={s.profile__name}>{}</span>
-                    <span className={s.profile__email}>@useremail</span>
+                    <span className={s.profile__name}>{props.info.fullName}</span>
+                    <span className={s.profile__email}>@usere gitHub</span>
+
                 </div>
 
                 <p className={s.profile__user_text}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Animi asperiores dicta, eius ipsam numquam provident quasi
-                    quo recusandae ullam voluptate. Accusantium distinctio enim hic nulla quisquam.
+
+                    {props.info.aboutMe || "Mne v padly pisati"}
+
                 </p>
 
                 <div className={s.profile__user_wrap}>

@@ -15,12 +15,22 @@ export type ProfilePageType ={
     profile: any
 }
 
+type ProfileType = {
+    aboutMe: any
+    contact: any
+    fullName:any
+    lookingForAjob: any
+    lookingForAJobDescription:any
+    photos: any
+    userId:number
+}
+
 type ProfileActionType = ReturnType<typeof AddPostAC>| ReturnType<typeof UpdatePostAC> | ReturnType<typeof setUserAC>
 
 const initialState: ProfilePageType = {
         posts: [],
         newPost: "",
-        profile: null
+        profile: {}
 
 
 }
@@ -43,7 +53,6 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
 
 
         case "SET_USER_PROFILE":
-            console.log(action)
             return {...state, profile: action.profile}
 
         default:
@@ -53,7 +62,7 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
 
 }
 
-const setUserAC = (profile:ProfilePageType) => {
+ export const setUserAC = (profile:ProfilePageType) => {
     return{
         type: "SET_USER_PROFILE",
         profile: profile
