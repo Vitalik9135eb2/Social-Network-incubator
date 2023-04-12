@@ -16,6 +16,10 @@ const App = () => {
         <BrowserRouter>
 
         <div className="App">
+
+
+
+
             <main className="main">
                 <NavBar/>
 
