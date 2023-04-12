@@ -9,9 +9,10 @@ import arrow from "../../Image/icon_arrow-left.svg";
 
 export const ProfileInfo = (props: any) => {
 
-    const bgProfile = props.info.photos.large || profileBg
+    // const bgProfile = props.info.photos.large && profileBg
 
-    const avatar = props.info.photos.small || avatarDefault
+    // const avatar = props.info.photos.small ? props.info.photos.small : avatarDefault
+
 
     return (
         <>
@@ -23,13 +24,13 @@ export const ProfileInfo = (props: any) => {
             </div>
 
             <div className={s.profile__bg}>
-                <img className={s.profile__bg_img} src={bgProfile}/>
+                <img className={s.profile__bg_img} src={profileBg}/>
             </div>
 
             <div className={s.profile__info}>
                 <div className={s.profile__info_top}>
                     <div className={s.profile__avatar_wrap}>
-                        <img className={s.profile__avatar} src={avatar}/>
+                        <img className={s.profile__avatar} src={avatarDefault}/>
                     </div>
 
                     <button className={s.btn}>Follow</button>

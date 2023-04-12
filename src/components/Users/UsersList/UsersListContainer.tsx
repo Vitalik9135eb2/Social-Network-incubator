@@ -87,7 +87,6 @@ export const UsersListContainer = (props:UsersListPropsType) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`).then(response => {
             props.setUsers(response.data.items)
             // this.props.setTotalUserCount(response.data.totalCount)
-            console.log(response.data.items)
             props.isFetchingFunc(false)
         })
 

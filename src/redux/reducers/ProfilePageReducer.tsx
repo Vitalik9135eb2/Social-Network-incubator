@@ -9,29 +9,46 @@ export type PostType ={
     disLikes: number
 }
 
-export type ProfilePageType ={
-    posts: Array<PostType>
-    newPost: string
-    profile: any
+type ContactType = {
+    facebook: string
+    github: string
+    instagram: string
+    vk: string
+    twitter: string
+    mainLink: string
+    website: string
+    youtube: string
 }
 
-type ProfileType = {
-    aboutMe: any
-    contact: any
-    fullName:any
-    lookingForAjob: any
-    lookingForAJobDescription:any
-    photos: any
+type PhotosType = {
+    small: string
+    large: string
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contact: ContactType
+    fullName:string
+    lookingForAjob: boolean
+    lookingForAJobDescription:string
+    photos: PhotosType
     userId:number
 }
+
+export type ProfilePageType ={
+    posts: PostType[]
+    newPost: string
+    profile:  ProfileType | null
+}
+
+
 
 type ProfileActionType = ReturnType<typeof AddPostAC>| ReturnType<typeof UpdatePostAC> | ReturnType<typeof setUserAC>
 
 const initialState: ProfilePageType = {
         posts: [],
         newPost: "",
-        profile: {}
-
+        profile: null
 
 }
 
@@ -50,7 +67,6 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
 
         case "UPDATE-POST":
             return {...state, newPost: action.postMessage }
-
 
         case "SET_USER_PROFILE":
             return {...state, profile: action.profile}
