@@ -5,13 +5,17 @@ import star from "../../Image/icon_star.svg";
 import calendar from "../../Image/icon_calendar.svg";
 import {NavLink} from "react-router-dom";
 import arrow from "../../Image/icon_arrow-left.svg";
+import {ProfileType} from "../../../redux/reducers/ProfilePageReducer";
 
 
-export const ProfileInfo = (props: any) => {
+type ProfileInfoPropsType = {
+    info: ProfileType | null
+}
+export const ProfileInfo = (props: ProfileInfoPropsType) => {
 
-    // const bgProfile = props.info.photos.large && profileBg
+    const bgProfile = props.info && props.info.photos.large ? props.info.photos.large : profileBg
 
-    // const avatar = props.info.photos.small ? props.info.photos.small : avatarDefault
+    const avatar = props.info && props.info.photos.small ? props.info.photos.small : avatarDefault
 
 
     return (
@@ -24,27 +28,27 @@ export const ProfileInfo = (props: any) => {
             </div>
 
             <div className={s.profile__bg}>
-                <img className={s.profile__bg_img} src={profileBg}/>
+                <img className={s.profile__bg_img} src={bgProfile}/>
             </div>
 
             <div className={s.profile__info}>
                 <div className={s.profile__info_top}>
                     <div className={s.profile__avatar_wrap}>
-                        <img className={s.profile__avatar} src={avatarDefault}/>
+                        <img className={s.profile__avatar} src={avatar}/>
                     </div>
 
                     <button className={s.btn}>Follow</button>
                 </div>
 
                 <div className={s.profile__user}>
-                    <span className={s.profile__name}>{props.info.fullName}</span>
+                    <span className={s.profile__name}>{props.info ? props.info.fullName : ""}</span>
                     <span className={s.profile__email}>@usere gitHub</span>
 
                 </div>
 
                 <p className={s.profile__user_text}>
 
-                    {props.info.aboutMe || "Mne v padly pisati"}
+                    {props.info ? props.info.aboutMe : "Mne v padly pisati"}
 
                 </p>
 

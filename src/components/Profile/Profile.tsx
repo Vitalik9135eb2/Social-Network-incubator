@@ -7,12 +7,12 @@ import {ProfileRightPanel} from "./ProfileRightPanel/ProfileRightPanel";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfilePostsContainer} from "./ProfilePosts/ProfilePostsContainer";
 import {ProfileRightPanelContainer} from "./ProfileRightPanel/ProfileRightPanelContainer";
-import {ProfilePageType} from "../../redux/reducers/ProfilePageReducer";
+import {ProfileType} from "../../redux/reducers/ProfilePageReducer";
 
 
 
 type ProfilePropsType = {
-    profile: ProfilePageType
+    profile: ProfileType | null
 }
 
 export const Profile = (props: ProfilePropsType) => {

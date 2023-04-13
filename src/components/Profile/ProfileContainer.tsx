@@ -43,6 +43,7 @@ export const ProfileContainer = (props:ProfileContainerPropsType) => {
         let userId = props.match.params.userId;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
             props.setUserProfile(response.data)
+            console.log("data from server",response.data)
             // props.isFetchingFunc(false)
         })
     }, [] )
@@ -52,19 +53,16 @@ export const ProfileContainer = (props:ProfileContainerPropsType) => {
     )
 }
 
-
-
 type mapStateToPropsType = {
-    profile: ProfileType
+    profile: ProfileType | null
 }
 
 type mapDispatchPropsType = {
-    setUserProfile: (profile: ProfilePageType) => void
+    setUserProfile: (profile: ProfileType) => void
 }
 let mapStateToProps = (state: AppRooStateType):mapStateToPropsType => ({
     profile: state.profilePage.profile
 })
-
 
 let WithRouterProfileComponent = withRouter(ProfileContainer)
 

@@ -38,7 +38,7 @@ export type ProfileType = {
 export type ProfilePageType ={
     posts: PostType[]
     newPost: string
-    profile:  ProfileType | null
+    profile: null | ProfileType
 }
 
 
@@ -49,11 +49,9 @@ const initialState: ProfilePageType = {
         posts: [],
         newPost: "",
         profile: null
-
 }
 
 export const profilePageReducer = (state: ProfilePageType = initialState, action: ProfileActionType) :ProfilePageType=> {
-
 
     switch (action.type){
         case "ADD-POST":
@@ -69,6 +67,7 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
             return {...state, newPost: action.postMessage }
 
         case "SET_USER_PROFILE":
+            console.log("data form action reducer",action.profile)
             return {...state, profile: action.profile}
 
         default:
@@ -78,7 +77,7 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
 
 }
 
- export const setUserAC = (profile:ProfilePageType) => {
+ export const setUserAC = (profile:ProfileType) => {
     return{
         type: "SET_USER_PROFILE",
         profile: profile
