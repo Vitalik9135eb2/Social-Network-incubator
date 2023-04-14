@@ -14,7 +14,6 @@ type ProfileInfoPropsType = {
 export const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     const bgProfile = props.info && props.info.photos.large ? props.info.photos.large : profileBg
-
     const avatar = props.info && props.info.photos.small ? props.info.photos.small : avatarDefault
 
 
@@ -48,7 +47,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
 
                 <p className={s.profile__user_text}>
 
-                    {props.info ? props.info.aboutMe : "Mne v padly pisati"}
+                    {props.info && props.info.aboutMe ? props.info.aboutMe : "Mne v padly pisati"}
 
                 </p>
 
