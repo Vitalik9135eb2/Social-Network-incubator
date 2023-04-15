@@ -8,7 +8,7 @@ const reducers = combineReducers({
     dialogsPage:dialogsPageReducer,
     profilePage:profilePageReducer,
     usersPage:usersPageReducer,
-    // auth: AuthReducer
+    auth: AuthReducer
 })
 
 export const store = createStore(reducers)

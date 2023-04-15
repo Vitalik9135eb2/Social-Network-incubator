@@ -8,4 +8,30 @@
   position: relative;
   min-height: 100vh;
   background-color: #15202B;
+  margin-top: 60px;
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #029afc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9999;
+  padding: 0 24px;
+}
+
+.logo{
+  width: 50px;
+  height: 50px;
+}
+
+.link{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
 }

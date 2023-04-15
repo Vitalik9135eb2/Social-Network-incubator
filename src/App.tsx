@@ -6,6 +6,7 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Users} from "./components/Users/Users";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
 
 
 
@@ -16,7 +17,7 @@ const App = () => {
         <BrowserRouter>
 
         <div className="App">
-
+            <HeaderContainer/>
             <main className="main">
                 <NavBar/>
 
