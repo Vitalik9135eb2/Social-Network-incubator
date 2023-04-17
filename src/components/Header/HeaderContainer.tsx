@@ -15,11 +15,11 @@ type HeaderContainerPropsType ={
 export const HeaderContainer = (props: any) =>{
 
     useEffect(()=>{
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me}`,{
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
             withCredentials: true,
-            // headers: {
-            //     'API-KEY': '7c5f3953-7fae-4325-9a4f-8956ec3d0d04'
-            // }
+            headers: {
+                'API-KEY': '7c5f3953-7fae-4325-9a4f-8956ec3d0d04'
+            }
         }).then(response => {
             if(response.data.resultCode === 0) {
                 // debugger
