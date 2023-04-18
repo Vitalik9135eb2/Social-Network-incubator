@@ -12,30 +12,33 @@ type HeaderContainerPropsType ={
     setUserDataAC: (userId:number, email:string, login:string) => void
 }
 
-export const HeaderContainer = (props: any) =>{
+class HeaderContainer extends React.Component<any, any>{
 
-    useEffect(()=>{
+    componentDidMount() {
+        console.log(this.props)
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
             withCredentials: true,
             headers: {
                 'API-KEY': '7c5f3953-7fae-4325-9a4f-8956ec3d0d04'
             }
         }).then(response => {
-            if(response.data.resultCode === 0) {
-                // debugger
+            if (response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data
-                props.setUserDataAC(id, email, login)
+                this.props.setUserDataAC(id, email, login)
             }
+
         })
-    },[])
+    }
 
-    return(
-        <Header {...props}/>
-    )
+    render() {
+        return <Header isAuth={this.props.isAuth} login={this.props.login}/>;
+    }
 }
-
 const mapStateToProps = (state:AppRooStateType) => {
-    isAuth: state.auth.isAuth
-    login: state.auth.login
+    return{
+        isAuth: state.auth.isAuth,
+        login: state.auth.login
+    }
 }
+
 export default connect(mapStateToProps, {setUserDataAC})(HeaderContainer)
