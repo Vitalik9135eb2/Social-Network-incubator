@@ -39,6 +39,7 @@ class UsersListContainer extends React.Component<UsersListPropsType> {
 
     componentDidMount() {
         this.props.isFetchingFunc(true)
+
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.setUsers(data.items)
             // this.props.setTotalUserCount(response.data.totalCount)
@@ -49,6 +50,7 @@ class UsersListContainer extends React.Component<UsersListPropsType> {
     onPageChanged = (page: number) => {
         this.props.isFetchingFunc(true)
         this.props.setCurrentPage(page)
+
         usersAPI.getUsers(page, this.props.pageSize).then(data => {
             this.props.setUsers(data.items)
             // this.props.setTotalUserCount(response.data.totalCount)

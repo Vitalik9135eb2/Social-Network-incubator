@@ -37,7 +37,7 @@ const initialState: InitialStateUsersType = {
     totalUsersCount: 260,
     currentPage: 18,
     isFetching: false,
-    followingInProgress: [28545]
+    followingInProgress: []
 
 }
 

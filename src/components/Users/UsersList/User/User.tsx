@@ -1,5 +1,7 @@
 import s from "./user.module.scss"
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {followAPI} from "../../../../api/api";
 
 type UserPropsType = {
     name: string
@@ -11,20 +13,37 @@ type UserPropsType = {
     avatar: string
     photo: string
     followingInProgress: number[]
-        onFollow: (id:number) => void
-    onUnfollow: (id:number) => void
-    ifFollowing: (state: boolean, userID:number) => void
+    onFollow: (id: number) => void
+    onUnfollow: (id: number) => void
+    ifFollowing: (state: boolean, userID: number) => void
 
 }
 
 export const User = (props: UserPropsType) => {
 
-    const onFollowHandler = () =>{
-        props.onUnfollow(props.id)
+    const onFollowHandler = () => {
+        props.ifFollowing(true, props.id)
+        followAPI.follow(props.id).then(data => {
+                if (data.resultCode === 0) {
+                    props.onUnfollow(props.id)
+                }
+                props.ifFollowing(false, props.id)
+
+            }
+        )
     }
 
-    const onUnfollowHandler = () =>{
-        props.onFollow(props.id)
+    const onUnfollowHandler = () => {
+        props.ifFollowing(true, props.id)
+
+        followAPI.unFollow(props.id).then(data => {
+            if (data.resultCode === 0) {
+                props.onFollow(props.id)
+            }
+            props.ifFollowing(false, props.id)
+
+        })
+
     }
 
     const photoUser = props.photo ? props.photo : props.avatar
@@ -35,14 +54,17 @@ export const User = (props: UserPropsType) => {
 
             <div className={s.user__avatarWrap}>
                 <NavLink to={"/profile/" + props.id}>
-                    <img src={ props.photo ? props.photo : photoUser} className={s.user__avatar}/>
+                    <img src={props.photo ? props.photo : photoUser} className={s.user__avatar}/>
                 </NavLink>
 
 
                 {
                     props.follow ?
-                        <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={onFollowHandler} className={`${s.user__follow} ${s.active}`}>Unfollow</button>
-                        : <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={onUnfollowHandler} className={s.user__follow}>Follow</button>
+                        <button disabled={props.followingInProgress.some(id => id === props.id)}
+                                onClick={onFollowHandler} className={`${s.user__follow} ${s.active}`}>Unfollow</button>
+
+                        : <button disabled={props.followingInProgress.some(id => id === props.id)}
+                                  onClick={onUnfollowHandler} className={s.user__follow}>Follow</button>
                 }
 
             </div>
