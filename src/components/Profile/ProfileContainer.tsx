@@ -41,7 +41,12 @@ export const ProfileContainer = (props:ProfileContainerPropsType) => {
 
     useEffect( ()=> {
         let userId = props.match.params.userId;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId,{
+            withCredentials: true,
+            headers: {
+                'API-KEY': '7c5f3953-7fae-4325-9a4f-8956ec3d0d04'
+            }
+        }).then(response => {
             props.setUserProfile(response.data)
             console.log("data from server",response.data)
             // props.isFetchingFunc(false)

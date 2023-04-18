@@ -10,8 +10,11 @@ type UserPropsType = {
     follow: boolean
     avatar: string
     photo: string
-    onFollow: (id:number) => void
+    followingInProgress: number[]
+        onFollow: (id:number) => void
     onUnfollow: (id:number) => void
+    ifFollowing: (state: boolean, userID:number) => void
+
 }
 
 export const User = (props: UserPropsType) => {
@@ -38,8 +41,8 @@ export const User = (props: UserPropsType) => {
 
                 {
                     props.follow ?
-                        <span onClick={onFollowHandler} className={`${s.user__follow} ${s.active}`}>Unfollow</span>
-                        : <span onClick={onUnfollowHandler} className={s.user__follow}>Follow</span>
+                        <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={onFollowHandler} className={`${s.user__follow} ${s.active}`}>Unfollow</button>
+                        : <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={onUnfollowHandler} className={s.user__follow}>Follow</button>
                 }
 
             </div>

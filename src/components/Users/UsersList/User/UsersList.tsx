@@ -4,33 +4,38 @@ import {User} from "./User";
 import {UserType} from "../../../../redux/reducers/UsersPageReducer";
 
 
- type UsersListPropsType ={
+type UsersListPropsType = {
     totalUsersCount: number
     pageSize: number
-    currentPage:number
+    currentPage: number
     users: Array<UserType>
+    followingInProgress: number[]
     avatar: string
-    follow: (el:number) => void
-    unFollow: (el:number) => void
-    onPageChanged: (el:any) => void
+    follow: (el: number) => void
+    unFollow: (el: number) => void
+    onPageChanged: (el: any) => void
+    ifFollowing: (state: boolean, userID:number) => void
+
 }
 
 
 export const UsersList = (props: UsersListPropsType) => {
 
 
-    const pagesCount = Math.ceil( props.totalUsersCount / props.pageSize )
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     const allPages = []
-    for (let i = 1; i <= pagesCount; i++){
+    for (let i = 1; i <= pagesCount; i++) {
         allPages.push(i)
     }
 
     const paginationItem = allPages.map(el => {
 
-        const classNameItem = props.currentPage === el ? `${s.pagination__item} ${s.active}`: `${s.pagination__item}`
+        const classNameItem = props.currentPage === el ? `${s.pagination__item} ${s.active}` : `${s.pagination__item}`
 
-        return <li key={el} className={classNameItem} onClick={() => {props.onPageChanged(el)} }>{el}</li>
+        return <li key={el} className={classNameItem} onClick={() => {
+            props.onPageChanged(el)
+        }}>{el}</li>
     })
 
     const listUsers = props.users.map(el => {
@@ -45,6 +50,8 @@ export const UsersList = (props: UsersListPropsType) => {
                      follow={el.follow}
                      onFollow={props.follow}
                      onUnfollow={props.unFollow}
+                     followingInProgress={props.followingInProgress}
+                     ifFollowing={props.ifFollowing}
         />
     })
 
