@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {AppRooStateType} from "../../../redux/store";
 import {
-    followAC, ifFollowingAC, isFetchingAC,
+    followAC, getUsersThunkCreator, ifFollowingAC, isFetchingAC,
     setCurrentPageAC,
     setTotalUserCountAC,
     setUsersAC,
@@ -32,19 +32,22 @@ export type UsersListPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: number[]
+    getUsers: any
 }
 
 
 class UsersListContainer extends React.Component<UsersListPropsType> {
 
     componentDidMount() {
-        this.props.isFetchingFunc(true)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
 
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            // this.props.setTotalUserCount(response.data.totalCount)
-            this.props.isFetchingFunc(false)
-        })
+        // this.props.isFetchingFunc(true)
+        //
+        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        //     this.props.setUsers(data.items)
+        //     // this.props.setTotalUserCount(response.data.totalCount)
+        //     this.props.isFetchingFunc(false)
+        // })
     }
 
     onPageChanged = (page: number) => {
@@ -92,6 +95,7 @@ export type MapStatePropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: number[]
+
 }
 
 
@@ -117,5 +121,6 @@ export default connect(mapStateToProps, {
     setCurrentPage: setCurrentPageAC,
     setTotalUserCount: setTotalUserCountAC,
     isFetchingFunc: isFetchingAC,
-    ifFollowing: ifFollowingAC
+    ifFollowing: ifFollowingAC,
+    getUsers: getUsersThunkCreator
 })(UsersListContainer)

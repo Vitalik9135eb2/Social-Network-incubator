@@ -1,3 +1,5 @@
+import {usersAPI} from "../../api/api";
+
 type PhotosUserType = {
     small: string
     large: string
@@ -119,4 +121,23 @@ export const ifFollowingAC = (state: boolean, userID: number) => {
         ifFollowing: state,
         userID
     } as const
+}
+
+
+
+
+export const getUsersThunkCreator = (currentPage:any, pageSize: any) =>{
+
+    return (dispatch: any) => {
+        dispatch(isFetchingAC(true))
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsersAC(data.items))
+
+            // dispatch(setTotalUserCount(response.data.totalCount))
+            dispatch(isFetchingAC(false))
+
+        })
+    }
+
 }
