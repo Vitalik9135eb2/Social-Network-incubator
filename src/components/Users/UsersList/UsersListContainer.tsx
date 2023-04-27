@@ -84,52 +84,6 @@ class UsersListContainer extends React.Component<UsersListPropsType> {
 
 }
 
-
-// export const UsersListContainer = (props:UsersListPropsType) => {
-//
-//     useEffect(() => {
-//         props.isFetchingFunc(true)
-//             getUsers(props.currentPage,props.pageSize ).then(response => {
-//                 props.setUsers(response.data.items)
-//                 // this.props.setTotalUserCount(response.data.totalCount)
-//                 props.isFetchingFunc(false)
-//             })
-//
-//     },[])
-//
-//     const onPageChanged = (page: number) => {
-//         props.isFetchingFunc(true)
-//         props.setCurrentPage(page)
-//         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${props.pageSize}`,{
-//         //     withCredentials: true,
-//         //     headers: {
-//         //         'API-KEY': '7c5f3953-7fae-4325-9a4f-8956ec3d0d04'
-//         //     }
-//         // }).then(response => {
-//         //     props.setUsers(response.data.items)
-//         //     props.isFetchingFunc(false)
-//         // })
-//     }
-//
-//     return(
-//         <>
-//             { props.isFetching? <Preloader/> : null}
-//
-//                  <UsersList totalUsersCount={props.totalUsersCount}
-//                            pageSize={props.pageSize}
-//                            currentPage={props.currentPage}
-//                            users={props.users}
-//                            avatar={props.avatar}
-//                            follow={props.follow}
-//                            unFollow={props.unFollow}
-//                            onPageChanged={onPageChanged}
-//                 />
-//
-//
-//         </>
-//     )
-// }
-
 export type MapStatePropsType = {
     users: Array<UserType>
     avatar: string
