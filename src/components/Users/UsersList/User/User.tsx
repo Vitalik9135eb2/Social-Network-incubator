@@ -22,28 +22,11 @@ type UserPropsType = {
 export const User = (props: UserPropsType) => {
 
     const onFollowHandler = () => {
-        props.ifFollowing(true, props.id)
-        followAPI.follow(props.id).then(data => {
-                if (data.resultCode === 0) {
-                    props.onUnfollow(props.id)
-                }
-                props.ifFollowing(false, props.id)
-
-            }
-        )
+        props.onUnfollow(props.id)
     }
 
     const onUnfollowHandler = () => {
-        props.ifFollowing(true, props.id)
-
-        followAPI.unFollow(props.id).then(data => {
-            if (data.resultCode === 0) {
-                props.onFollow(props.id)
-            }
-            props.ifFollowing(false, props.id)
-
-        })
-
+        props.onFollow(props.id)
     }
 
     const photoUser = props.photo ? props.photo : props.avatar

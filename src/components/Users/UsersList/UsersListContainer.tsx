@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import {AppRooStateType} from "../../../redux/store";
 import {
-    followAC, getUsersThunkCreator, ifFollowingAC, isFetchingAC,
+    followAC, followThunkCreater, getUsersThunkCreator, ifFollowingAC, isFetchingAC,
     setCurrentPageAC,
     setTotalUserCountAC,
     setUsersAC,
-    unFollowAC,
+    unFollowAC, unFollowThunkCreater,
     UserType
 } from "../../../redux/reducers/UsersPageReducer";
 import {Dispatch} from "redux";
@@ -22,10 +22,7 @@ export type UsersListPropsType = {
     avatar: string
     follow: (userId: number) => void
     unFollow: (userId: number) => void
-    setUsers: (users: Array<UserType>) => void
     setCurrentPage: (page: number) => void
-    setTotalUserCount: (page: number) => void
-    isFetchingFunc: (state: boolean) => void
     ifFollowing: (state: boolean, userID:number) => void
     pageSize: number
     totalUsersCount: number
@@ -40,25 +37,11 @@ class UsersListContainer extends React.Component<UsersListPropsType> {
 
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
-
-        // this.props.isFetchingFunc(true)
-        //
-        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-        //     this.props.setUsers(data.items)
-        //     // this.props.setTotalUserCount(response.data.totalCount)
-        //     this.props.isFetchingFunc(false)
-        // })
     }
 
     onPageChanged = (page: number) => {
-        this.props.isFetchingFunc(true)
         this.props.setCurrentPage(page)
-
-        usersAPI.getUsers(page, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            // this.props.setTotalUserCount(response.data.totalCount)
-            this.props.isFetchingFunc(false)
-        })
+        this.props.getUsers(page, this.props.pageSize)
     }
 
     render() {
@@ -115,12 +98,9 @@ const mapStateToProps = (state: AppRooStateType): MapStatePropsType => {
 }
 
 export default connect(mapStateToProps, {
-    follow: followAC,
-    unFollow: unFollowAC,
-    setUsers: setUsersAC,
+    follow: followThunkCreater,
+    unFollow: unFollowThunkCreater,
     setCurrentPage: setCurrentPageAC,
-    setTotalUserCount: setTotalUserCountAC,
-    isFetchingFunc: isFetchingAC,
     ifFollowing: ifFollowingAC,
     getUsers: getUsersThunkCreator
 })(UsersListContainer)

@@ -1,4 +1,4 @@
-import {usersAPI} from "../../api/api";
+import {followAPI, usersAPI} from "../../api/api";
 
 type PhotosUserType = {
     small: string
@@ -126,7 +126,7 @@ export const ifFollowingAC = (state: boolean, userID: number) => {
 
 
 
-export const getUsersThunkCreator = (currentPage:any, pageSize: any) =>{
+export const getUsersThunkCreator = (currentPage:number, pageSize: number) =>{
 
     return (dispatch: any) => {
         dispatch(isFetchingAC(true))
@@ -136,6 +136,43 @@ export const getUsersThunkCreator = (currentPage:any, pageSize: any) =>{
 
             // dispatch(setTotalUserCount(response.data.totalCount))
             dispatch(isFetchingAC(false))
+
+        })
+    }
+
+}
+
+
+
+export const followThunkCreater = (id: number) =>{
+
+    return (dispatch: any) => {
+        dispatch(ifFollowingAC(true, id))
+
+        followAPI.follow(id).then(data => {
+                if (data.resultCode === 0) {
+                   dispatch(followAC(id))
+                }
+                dispatch(ifFollowingAC(false, id))
+
+            }
+        )
+    }
+
+}
+
+
+export const unFollowThunkCreater = (id: number) =>{
+
+    return (dispatch: any) => {
+        dispatch(ifFollowingAC(true, id))
+
+        followAPI.unFollow(id).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unFollowAC(id))
+            }
+
+            dispatch(ifFollowingAC(false, id))
 
         })
     }
