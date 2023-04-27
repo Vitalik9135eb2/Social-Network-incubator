@@ -23,7 +23,6 @@ export type UsersListPropsType = {
     follow: (userId: number) => void
     unFollow: (userId: number) => void
     setCurrentPage: (page: number) => void
-    ifFollowing: (state: boolean, userID:number) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -58,7 +57,6 @@ class UsersListContainer extends React.Component<UsersListPropsType> {
                            unFollow={this.props.unFollow}
                            onPageChanged={this.onPageChanged}
                            followingInProgress={this.props.followingInProgress}
-                           ifFollowing={this.props.ifFollowing}
                 />
 
 
@@ -101,6 +99,5 @@ export default connect(mapStateToProps, {
     follow: followThunkCreater,
     unFollow: unFollowThunkCreater,
     setCurrentPage: setCurrentPageAC,
-    ifFollowing: ifFollowingAC,
     getUsers: getUsersThunkCreator
 })(UsersListContainer)

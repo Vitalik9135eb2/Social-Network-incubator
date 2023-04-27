@@ -15,7 +15,6 @@ type UserPropsType = {
     followingInProgress: number[]
     onFollow: (id: number) => void
     onUnfollow: (id: number) => void
-    ifFollowing: (state: boolean, userID: number) => void
 
 }
 

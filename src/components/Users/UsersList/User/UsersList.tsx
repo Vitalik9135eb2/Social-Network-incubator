@@ -14,7 +14,6 @@ type UsersListPropsType = {
     follow: (el: number) => void
     unFollow: (el: number) => void
     onPageChanged: (el: any) => void
-    ifFollowing: (state: boolean, userID:number) => void
 
 }
 
@@ -51,7 +50,6 @@ export const UsersList = (props: UsersListPropsType) => {
                      onFollow={props.follow}
                      onUnfollow={props.unFollow}
                      followingInProgress={props.followingInProgress}
-                     ifFollowing={props.ifFollowing}
         />
     })
 
