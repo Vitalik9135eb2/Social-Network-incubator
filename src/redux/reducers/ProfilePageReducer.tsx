@@ -1,4 +1,6 @@
 import React from 'react';
+import {usersAPI} from "../../api/api";
+import {isFetchingAC, setUsersAC} from "./UsersPageReducer";
 
 
 
@@ -77,7 +79,7 @@ export const profilePageReducer = (state: ProfilePageType = initialState, action
 
 }
 
- export const setUserAC = (profile:ProfileType) => {
+export const setUserAC = (profile:ProfileType) => {
     return{
         type: "SET_USER_PROFILE",
         profile: profile
@@ -96,4 +98,13 @@ export const UpdatePostAC = (text:string) => {
         type: "UPDATE-POST",
         postMessage: text
     } as const
+}
+
+export const getUserThunkCreator= (userId:number) => {
+
+    return (dispatch: any) => {
+        usersAPI.profileUsers(userId).then(data =>{
+            dispatch(setUserAC(data))
+        })
+    }
 }

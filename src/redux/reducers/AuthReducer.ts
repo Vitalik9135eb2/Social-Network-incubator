@@ -1,4 +1,6 @@
-
+import {followAPI, usersAPI} from "../../api/api";
+import {ifFollowingAC, unFollowAC} from "./UsersPageReducer";
+import axios from "axios";
 
 
 type ActionType = ReturnType<typeof setUserDataAC>
@@ -34,4 +36,18 @@ export const setUserDataAC =(userId:number, email:string, login:string) => {
         type:"SET_USER_DATA",
         data:{userId,email,login}
     } as const
+}
+
+export const authThunkCreater = () =>{
+
+    return (dispatch: any) => {
+        usersAPI.me().then(response => {
+            if (response.data.resultCode === 0) {
+                const {id, email, login} = response.data.data
+              dispatch(setUserDataAC(id, email, login))
+            }
+
+        })
+    }
+
 }

@@ -134,16 +134,12 @@ export const getUsersThunkCreator = (currentPage:number, pageSize: number) =>{
         usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(setUsersAC(data.items))
 
-            // dispatch(setTotalUserCount(response.data.totalCount))
             dispatch(isFetchingAC(false))
 
         })
     }
 
 }
-
-
-
 export const followThunkCreater = (id: number) =>{
 
     return (dispatch: any) => {
@@ -160,8 +156,6 @@ export const followThunkCreater = (id: number) =>{
     }
 
 }
-
-
 export const unFollowThunkCreater = (id: number) =>{
 
     return (dispatch: any) => {
