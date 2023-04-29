@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 import s from "../dialogs.module.scss";
 import {DialogItem} from "../DialogItem/DialogItem";
 import {DialogPropsType} from "./DialogChatContainer";
+import {Redirect} from "react-router-dom";
 
 
 
@@ -27,6 +28,8 @@ export const DialogChat = (props: DialogPropsType) => {
             e && props.updateInputText(postMessageRef.current?.value)
         }
     }
+
+    if(props.isAuth == false) return <Redirect to={"/login"}/>
 
     return(
         <div className={s.dialogs__message_wrap}>

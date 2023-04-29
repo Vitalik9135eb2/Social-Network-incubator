@@ -9,6 +9,7 @@ import {AddDialogAC, DialogsType, UpdateDialogAC} from "../../../redux/reducers/
 type MapStatePropsType ={
     dialogs: Array<DialogsType>
     newMessage: string
+    isAuth: boolean
 }
 type MapDispatchPropsType = {
     updateInputText: (text:string) => void
@@ -20,7 +21,8 @@ export type DialogPropsType = MapStatePropsType & MapDispatchPropsType
 const mapStateToProps = (state:AppRooStateType):MapStatePropsType =>{
     return{
         dialogs: state.dialogsPage.dialogs,
-        newMessage: state.dialogsPage.newMessage
+        newMessage: state.dialogsPage.newMessage,
+        isAuth: state.auth.isAuth
     }
 }
 
